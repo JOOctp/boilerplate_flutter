@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_first_project/view/list_category/controller/list_category_controller.dart';
-import 'package:flutter_first_project/value/colors_value.dart';
 import 'package:get/get.dart';
 
-import '../../../model/base_response.dart';
-import '../../../model/category.dart';
+import '../../../value/colors_value.dart';
+import '../controller/list_category_controller.dart';
+
 
 class ListCategoryScreen extends StatelessWidget {
   final postC = Get.find<ListCategoryController>();
@@ -17,19 +16,19 @@ class ListCategoryScreen extends StatelessWidget {
       appBar: AppBar(title: Text("Category Sewasam")),
       body: SafeArea(
         child: Obx((){
-          if(postC.categoryResponse.value.isLoading){
+          if(postC.isLoading.value){
             return Center(
                 child: CircularProgressIndicator(
                     color: ColorsValue.greenSuccess
                 )
             );
-          } else if(postC.categoryResponse.value.data!.isEmpty){
+          } else if(postC.listCategory.isEmpty){
             return Center(child: Text("Belum ada data"));
           } else {
             return ListView.builder(
-              itemCount: postC.categoryResponse.value.data!.length,
+              itemCount: postC.listCategory.length,
               itemBuilder: (context, i) => ListTile(
-                  title: Text("${postC.categoryResponse.value.data![i].name}")
+                  title: Text("${postC.listCategory[i].name}")
               ),
             );
           }
@@ -37,7 +36,6 @@ class ListCategoryScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          postC.categoryResponse.value = BaseResponse<List<Category>>(status: false, isLoading: true, data: List.empty());
           postC.getCategory();
         },
         child: Icon(Icons.get_app_rounded),
