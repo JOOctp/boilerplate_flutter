@@ -1,15 +1,13 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_first_project/controllers/category_controller.dart';
+import 'package:flutter_first_project/view/list_category/controller/list_category_controller.dart';
 import 'package:flutter_first_project/value/colors_value.dart';
 import 'package:get/get.dart';
 
-import '../model/base_response.dart';
-import '../model/category.dart';
+import '../../../model/base_response.dart';
+import '../../../model/category.dart';
 
-class ViewListCategory extends StatelessWidget {
-  final postC = Get.find<CategoryController>();
+class ListCategoryScreen extends StatelessWidget {
+  final postC = Get.find<ListCategoryController>();
 
   @override
   Widget build(BuildContext context) {
