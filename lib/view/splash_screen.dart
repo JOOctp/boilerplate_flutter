@@ -1,10 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../routes/routing_name.dart';
 
 class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Future.delayed(const Duration(seconds: 2), (){
+      Get.offNamed(RoutingName.home);
+    });
+
     return Container(
       color: Colors.white,
       child: Padding(
